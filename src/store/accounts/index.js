@@ -7,7 +7,7 @@ const BASE_URI = "/accounts"
 
 const store = new StoreItemsModule({
   baseURI: BASE_URI,
-  presetActions: ["fetch"],
+  presetActions: ["fetch", "create"],
   withSorting: {
     field: "name",
     direction: "asc"

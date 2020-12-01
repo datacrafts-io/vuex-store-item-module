@@ -1,4 +1,4 @@
-import { find } from "lodash-es"
+import { find, maxBy, isEmpty } from "lodash-es"
 
 const accounts = [
   { id: 1, name: "John", age: 20 },
@@ -8,6 +8,14 @@ const accounts = [
   { id: 5, name: "Sam", age: 33 }
 ]
 
+const handleCreateAccount = params => {
+  if (isEmpty(params.name)) return
+
+  const id = maxBy(accounts, "id").id + 1
+
+  accounts.push({ id, name: params.name })
+}
+
 class Api {
   get(baseURI, params = {}) {
     switch (baseURI) {
@@ -16,6 +24,15 @@ class Api {
       case "/accounts/item":
         return find(accounts, ["id", params.id])
     }  
+  }
+
+  post(baseURI, params = {}) {
+    switch (baseURI) {
+      case "/accounts":
+        handleCreateAccount(params)
+
+        return { data: accounts }
+    }
   }
 }
 
