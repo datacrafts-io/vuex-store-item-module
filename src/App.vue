@@ -1,5 +1,14 @@
 <template>
-  <h1>Vuex Store Item Module</h1>
+  <div>
+    <h1>Vuex Store Item Module</h1>
+    <Example />
+  </div>
 </template>
 
-<style></style>
+<script>
+  export default {
+    components: {
+      Example: () => import("@/example")
+    }
+  }
+</script>
